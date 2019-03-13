@@ -8,11 +8,11 @@ Loopback-style REST Client for [react-admin](https://github.com/marmelab/react-a
 
 ## How to use
 
-1. `yarn add ra-loopback`
+1. `yarn add ra-loopback-try`
 2. On your `App.js`, add this:
 
 ```
-import loopbackApiClient from 'ra-loopback';
+import loopbackApiClient from 'ra-loopback-try';
 
 ...
 
@@ -22,7 +22,7 @@ import loopbackApiClient from 'ra-loopback';
 3. If you want this module handle authentication, add this:
 
 ```
-import loopbackApiClient, {authClient} from 'ra-loopback';
+import loopbackApiClient, {authClient} from 'ra-loopback-try';
 
 ...
 

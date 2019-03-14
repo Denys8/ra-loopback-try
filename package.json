@@ -1,6 +1,6 @@
 {
   "name": "ra-loopback-try",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "loopback style REST client for react-admin",
   "main": "lib/index.js",
   "scripts": {
@@ -27,7 +27,7 @@
     "loopback"
   ],
   "author": "Denys Yevtushenko",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Denys8/ra-loopback-try/issues"
   },

@@ -1,4 +1,4 @@
-import {queryParameters, fetchJson} from './fetch';
+import { queryParameters, fetchJson } from './fetch';
 import {
     GET_LIST,
     GET_ONE,
@@ -34,10 +34,10 @@ export default (apiUrl, httpClient = fetchJson) => {
         const options = {};
         switch (type) {
             case GET_LIST: {
-                const {page, perPage} = params.pagination;
-                const {field, order} = params.sort;
+                const { page, perPage } = params.pagination;
+                const { field, order } = params.sort;
                 const query = {};
-                query['where'] = {...params.filter};
+                query['where'] = { ...params.filter };
                 if (field) query['order'] = [field + ' ' + order];
                 if (perPage > 0) {
                     query['limit'] = perPage;
@@ -45,7 +45,7 @@ export default (apiUrl, httpClient = fetchJson) => {
                         query['skip'] = (page - 1) * perPage;
                     }
                 }
-                url = `${apiUrl}/${resource}?${queryParameters({filter: JSON.stringify(query)})}`;
+                url = `${apiUrl}/${resource}?${queryParameters({ filter: JSON.stringify(query) })}`;
                 break;
             }
             case GET_ONE:
@@ -53,19 +53,19 @@ export default (apiUrl, httpClient = fetchJson) => {
                 break;
             case GET_MANY: {
                 const listId = params.ids.map(id => {
-                    return {'id': id};
+                    return { 'id': id };
                 });
                 const query = {
-                    'where': {'or': listId}
+                    'where': { 'or': listId }
                 };
-                url = `${apiUrl}/${resource}?${queryParameters({filter: JSON.stringify(query)})}`;
+                url = `${apiUrl}/${resource}?${queryParameters({ filter: JSON.stringify(query) })}`;
                 break;
             }
             case GET_MANY_REFERENCE: {
-                const {page, perPage} = params.pagination;
-                const {field, order} = params.sort;
+                const { page, perPage } = params.pagination;
+                const { field, order } = params.sort;
                 const query = {};
-                query['where'] = {...params.filter};
+                query['where'] = { ...params.filter };
                 query['where'][params.target] = params.id;
                 if (field) query['order'] = [field + ' ' + order];
                 if (perPage > 0) {
@@ -74,7 +74,7 @@ export default (apiUrl, httpClient = fetchJson) => {
                         query['skip'] = (page - 1) * perPage;
                     }
                 }
-                url = `${apiUrl}/${resource}?${queryParameters({filter: JSON.stringify(query)})}`;
+                url = `${apiUrl}/${resource}?${queryParameters({ filter: JSON.stringify(query) })}`;
                 break;
             }
             case UPDATE:
@@ -92,9 +92,9 @@ export default (apiUrl, httpClient = fetchJson) => {
                 options.method = 'DELETE';
                 break;
             default:
-                throw new Error(`Unsupported fetch action type ${type}`);
+                throw new Error(`Unsupported fetch action type!!! ${type}`);
         }
-        return {url, options};
+        return { url, options };
     };
 
     /**
@@ -105,7 +105,7 @@ export default (apiUrl, httpClient = fetchJson) => {
      * @returns {Object} REST response
      */
     const convertHTTPResponseToREST = (response, type, resource, params) => {
-        const {headers, json} = response;
+        const { headers, json } = response;
         switch (type) {
             case GET_LIST:
             case GET_MANY_REFERENCE:
@@ -132,7 +132,7 @@ export default (apiUrl, httpClient = fetchJson) => {
      * @returns {Promise} the Promise for a REST response
      */
     return (type, resource, params) => {
-        const {url, options} = convertRESTRequestToHTTP(type, resource, params);
+        const { url, options } = convertRESTRequestToHTTP(type, resource, params);
         return httpClient(url, options)
             .then(response => convertHTTPResponseToREST(response, type, resource, params));
     };

@@ -15,7 +15,7 @@
     "loopback"
   ],
   "author": "Denys",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Denys8/ra-loopback-try/issues"
   },
